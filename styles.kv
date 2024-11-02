@@ -1,0 +1,96 @@
+#:import hex kivy.utils.get_color_from_hex
+<FreeCreateButton>
+    anchor_x: "right"
+    anchor_y: "bottom"
+    padding: [0, 0, 10, 10]
+
+    MDIconButton:
+        icon: "plus"
+        md_bg_color: app.theme_cls.primary_color
+        icon_size: "40sp"
+
+<CardLabel>
+    color: "black"
+    halign: "left"
+    valugn: "middle"
+
+<CardTextArea>
+    orientation: "vertical"
+    padding: 10, 10
+
+<CardLeftWidget>
+    size_hint_x: .3
+    orientation: "vertical"
+    MDBoxLayout:
+        padding: 8
+        MDAnchorLayout:
+            id: primary_container
+            anchor_x: "center"
+            anchor_y: "center"
+            radius: 20
+
+    MDAnchorLayout:
+        id: secondary_container
+        size_hint_y: .3
+        anchor_x: "center"
+        anchor_y: "center"
+
+<SheetCard>
+    orientation: "horizontal"
+    height: 100
+    size_hint_y: None
+    padding: 5
+    radius: 20
+    md_bg_color: get_color_from_hex("#EDF1FC")
+
+    canvas.before:
+        Color:
+            rgba: .5, .5, .5, 1
+        Line:
+            width: 2
+            rounded_rectangle: self.x, self.y, self.width, self.height, 20
+
+<TemplateTopBar>
+    elevation: 4
+    pos_hint: {"center_x": .5, "center_y": .5}
+
+<IconListItem>
+    IconLeftWidget:
+        icon: root.icon
+
+<TemplateNavigationBar>
+    panel_color: "#eeeaea"
+    selected_color_background: "orange"
+    transition_duration: 0.1
+    MDBottomNavigationItem:
+        name: 'screen 1'
+        text: 'sheets'
+        icon: 'google-spreadsheet'
+        MDScreenManager:
+            SheetsScreen:
+                name: "sheets screen"
+                FreeCreateButton:
+
+            CardViewScreen:
+                name: "cardview screen"
+
+    MDBottomNavigationItem:
+        name: 'screen 2'
+        text: 'statistics'
+        icon: 'chart-arc'
+        StatisticsScreen:
+            name: "statistics screen"
+
+    MDBottomNavigationItem:
+        name: 'screen 3'
+        text: 'settings'
+        icon: 'cog'
+        SettingsScreen:
+            name: "settings screen"
+
+MDBoxLayout:
+    orientation: "vertical"
+    TemplateTopBar:
+    TemplateNavigationBar:
+
+
